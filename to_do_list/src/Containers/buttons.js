@@ -12,11 +12,11 @@ const useStyles = makeStyles({
     }
   })
 
-function DownButtons() {
+function DownButtons(props) {
   const classes = useStyles();
   return (
     <div className={classes.buttons}>
-      <AddButton />
+      <AddButton add={props.add}/>
       <SaveButton />
     </div>
   );
