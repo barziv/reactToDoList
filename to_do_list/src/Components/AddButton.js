@@ -1,64 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import TextField from "@material-ui/core/TextField";
+import uuid from 'react-uuid';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import SimpleDialog from './SimpleDialog';
 
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-    >
-      <DialogTitle id="form-dialog-title">Add assignment</DialogTitle>
-      <DialogContent>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Details"
-          type="text"
-          fullWidth
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleClose} color="primary">
-          Add
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired
-};
-
-export default function AddButton() {
+export default function AddButton(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = value => {
+  const handleClose = (shouldAdd, value) => {
+    if (shouldAdd){
+      props.add(uuid(), false, value);
+    }
     setOpen(false);
   };
 
@@ -67,7 +23,7 @@ export default function AddButton() {
       <Fab color="primary" aria-label="add">
         <AddIcon onClick={handleClickOpen} />
       </Fab>
-      <SimpleDialog open={open} onClose={handleClose} />
+      <SimpleDialog open={open} onClose={handleClose} title="Add Assignment" action="Add"/>
     </div>
   );
 }
