@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import AssignmentsList from "./Components/List";
 import Header from "./Components/Header";
 import DownButtons from "./Containers/buttons";
+import config from './config';
 
 function App() {
   const [assignments, setAssignments] = useState({});
@@ -25,6 +26,11 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    let savedAssignments = localStorage.getItem(config.LOCAL_STORAGE_KEY);
+    setAssignments(JSON.parse(savedAssignments) ?? {});
+  }, []);
+
   return (
     <div className="App">
       <Header>To Do List</Header>
@@ -33,7 +39,7 @@ function App() {
         change={changeAssignment}
         delete={deleteAssignment}
       />
-      <DownButtons add={changeAssignment} />
+      <DownButtons data={assignments} add={changeAssignment} />
     </div>
   );
 }

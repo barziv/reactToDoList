@@ -17,7 +17,7 @@ function DownButtons(props) {
   return (
     <div className={classes.buttons}>
       <AddButton add={props.add}/>
-      <SaveButton />
+      <SaveButton data={props.data}/>
     </div>
   );
 }
