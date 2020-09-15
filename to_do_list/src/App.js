@@ -4,6 +4,7 @@ import AssignmentsList from "./Components/List";
 import Header from "./Components/Header";
 import DownButtons from "./Containers/buttons";
 import config from './config';
+import storageManager from './StorageManager';
 
 function App() {
   const [assignments, setAssignments] = useState({});
@@ -27,8 +28,7 @@ function App() {
   };
 
   useEffect(() => {
-    let savedAssignments = localStorage.getItem(config.LOCAL_STORAGE_KEY);
-    setAssignments(JSON.parse(savedAssignments) ?? {});
+    setAssignments(storageManager.load(config.STORAGE_KEY) ?? {});
   }, []);
 
   return (
