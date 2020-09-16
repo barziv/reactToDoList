@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem } from '@material-ui/core';
 import Assignment from './Assignment';
@@ -10,15 +11,16 @@ const useStyle = makeStyles({
     }
 })
 
-function AssignmentsList(props) {
+function AssignmentsList() {
     const classes=useStyle();
+    const data = useSelector(state => state);
 
     return (
         <List className={classes.list}>
-            {Object.entries(props.data).map((item) => {
+            {Object.entries(data).map((item) => {
                 return (
                     <ListItem id={item[0]}>
-                        <Assignment id={item[0]} isDone={item[1]['done']} changeItem={props.change} delete={props.delete}>
+                        <Assignment id={item[0]} isDone={item[1]['done']}>
                             {item[1]['assignment']}
                         </Assignment>
                     </ListItem>

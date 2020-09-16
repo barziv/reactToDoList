@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
+import update from '../actions/updateAssignment';
+import deleteAssignment from '../actions/deleteAssignment';
 import { FormControlLabel, Checkbox, IconButton } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -6,6 +9,7 @@ import SimpleDialog from "./SimpleDialog";
 
 function Assignment(props) {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -13,7 +17,7 @@ function Assignment(props) {
 
   const handleClose = (shouldUpdate, value) => {
     if(shouldUpdate) {
-        props.changeItem(props.id, props.isDone, value);
+        dispatch(update(props.id, props.isDone, value));
     }
     setOpen(false);
   };
@@ -24,9 +28,9 @@ function Assignment(props) {
         control={
           <Checkbox
             checked={props.isDone}
-            onChange={() =>
-              props.changeItem(props.id, !props.isDone, props.children)
-            }
+            onChange={() => {
+              dispatch(update(props.id, !props.isDone, props.children));
+            }}
             indeterminate
           />
         }
@@ -35,7 +39,9 @@ function Assignment(props) {
       <IconButton onClick={handleClickOpen}>
         <EditIcon />
       </IconButton>
-      <IconButton onClick={() => props.delete(props.id)}>
+      <IconButton onClick={() => {
+          dispatch(deleteAssignment(props.id));
+        }}>
         <DeleteForeverIcon />
       </IconButton>
       <SimpleDialog

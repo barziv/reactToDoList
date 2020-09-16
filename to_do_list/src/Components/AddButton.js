@@ -1,11 +1,13 @@
 import React from "react";
-import uuid from 'react-uuid';
+import { useDispatch } from 'react-redux';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import SimpleDialog from './SimpleDialog';
+import add from '../actions/addNewAssignment';
 
 export default function AddButton(props) {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -13,7 +15,7 @@ export default function AddButton(props) {
 
   const handleClose = (shouldAdd, value) => {
     if (shouldAdd){
-      props.add(uuid(), false, value);
+      dispatch(add(value));
     }
     setOpen(false);
   };
