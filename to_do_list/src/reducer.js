@@ -40,7 +40,8 @@ const initState = {};
 const reducer = (state = initState, action) => {
   let actionTypes = config.ACTION_TYPES;
   if (Object.values(actionTypes).includes(action.type)) {
-    let newState = Object.create(state);
+    let newState = {};
+    Object.assign(newState, state);
     newState = ACTION_TYPES_FUNCTIONS[action.type](newState, action.payload);
     return newState;
   }
