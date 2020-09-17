@@ -28,7 +28,10 @@ function App() {
   };
 
   useEffect(() => {
-    setAssignments(storageManager.load(config.STORAGE_KEY) ?? {});
+    storageManager.load(config.HOST_URI)
+    .then(data => {
+      setAssignments(data ?? {});
+    });
   }, []);
 
   return (
