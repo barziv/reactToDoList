@@ -7,9 +7,11 @@ class MongoDal():
         self.db = client.toDoList.toDoList
 
     def getData(self, id):
-        id = ObjectId(id)
-        data = self.db.find_one({'_id': id})
-        del data["_id"]
+        data = dict()
+        if (id):
+            id = ObjectId(id)
+            data = self.db.find_one({'_id': id})
+            del data["_id"]
         return data
 
     def deleteData(self, id):
