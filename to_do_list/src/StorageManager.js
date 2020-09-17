@@ -1,12 +1,22 @@
 class StorageManager {
-    save(key, value) {
-        localStorage.setItem(key, JSON.stringify(value));
-    }
+  save(host, value) {
+    fetch(host+"/save", {
+      method: "POST",
+      mode: 'no-cors',
+      credentials: "include",
+      body: JSON.stringify(value)
+    });
+  }
 
-    load(key) {
-        let savedAssignments = localStorage.getItem(key);
-        return JSON.parse(savedAssignments);
-    }
+  async load(host) {
+    let res = await fetch(host+"/load", {
+      method: "GET",
+      mode: 'cors',
+      credentials: "include"
+    });
+    let data = await res.json();
+    return data;
+  }
 }
 
 let storageManager = new StorageManager();
