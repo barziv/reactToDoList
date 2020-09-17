@@ -6,7 +6,7 @@ import storageManager from '../StorageManager';
 
 function SaveButton(props) {
   const saveToLocalStorage = () => {
-    storageManager.save(config.STORAGE_KEY, props.data);
+    storageManager.save(config.HOST_URI, props.data);
   }
 
   return (
