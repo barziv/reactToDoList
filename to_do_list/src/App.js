@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import AssignmentsList from "./Components/List";
+import AssignmentsList from "./Components/AssignmentsList";
 import Header from "./Components/Header";
-import DownButtons from "./Containers/buttons";
+import DownButtons from "./Containers/DownButtons";
 import config from './config';
 import storageManager from './StorageManager';
 
@@ -21,9 +20,7 @@ function App() {
   const deleteAssignment = id => {
     setAssignments(curr => {
       delete curr[id];
-      let newAssignments = {};
-      Object.assign(newAssignments, curr);
-      return newAssignments;
+      return {...curr};
     });
   };
 

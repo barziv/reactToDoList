@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core";
 
-export default function SimpleDialog(props) {
+function SimpleDialog(props) {
     const { onClose, open, title, action } = props;
   
     const handleClose = (shouldUpdate) => {
@@ -38,3 +38,5 @@ export default function SimpleDialog(props) {
       </Dialog>
     );
   }
+
+export default SimpleDialog;

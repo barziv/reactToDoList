@@ -17,7 +17,7 @@ function AssignmentsList(props) {
         <List className={classes.list}>
             {Object.entries(props.data).map((item) => {
                 return (
-                    <ListItem id={item[0]}>
+                    <ListItem key={item[0]}>
                         <Assignment id={item[0]} isDone={item[1]['done']} changeItem={props.change} delete={props.delete}>
                             {item[1]['assignment']}
                         </Assignment>

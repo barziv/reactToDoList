@@ -4,7 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import SimpleDialog from './SimpleDialog';
 
-export default function AddButton(props) {
+function AddButton(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,3 +27,5 @@ export default function AddButton(props) {
     </div>
   );
 }
+
+export default AddButton;
