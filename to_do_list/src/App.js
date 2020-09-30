@@ -3,23 +3,26 @@ import AssignmentsList from "./Components/AssignmentsList";
 import Header from "./Components/Header";
 import DownButtons from "./Containers/DownButtons";
 import config from './config';
-import storageManager from './StorageManager';
+import storageManager from './Storage/StorageManager';
 
 function App() {
   const [assignments, setAssignments] = useState({});
 
   const changeAssignment = (id, isDone, label) => {
-    setAssignments({...assignments,
-      [id]: {
+    setAssignments(curr => {
+      curr[id] = {
         'done': isDone,
         'assignment': label
       }
+      storageManager.save(config.STORAGE_KEY, curr);
+      return {...curr};
     });
   };
 
   const deleteAssignment = id => {
     setAssignments(curr => {
       delete curr[id];
+      storageManager.save(config.STORAGE_KEY, curr);
       return {...curr};
     });
   };
