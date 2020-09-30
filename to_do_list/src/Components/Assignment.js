@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import SimpleDialog from "./SimpleDialog";
@@ -30,7 +31,9 @@ function Assignment(props) {
           }}
           id={props.id}
         />
-        <label htmlFor={props.id} className="assignmentLabel">{props.children}</label>
+        <label htmlFor={props.id} className="assignmentLabel">
+          {props.children}
+        </label>
         <EditIcon onClick={handleClickOpen} />
         <DeleteForeverIcon onClick={() => props.delete(props.id)} />
       </div>
@@ -43,5 +46,11 @@ function Assignment(props) {
     </div>
   );
 }
+
+Assignment.propTypes = {
+  id: PropTypes.string,
+  isDone: PropTypes.bool,
+  changeItem: PropTypes.func
+};
 
 export default Assignment;

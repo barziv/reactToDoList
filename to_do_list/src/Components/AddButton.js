@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 import AddIcon from "@material-ui/icons/Add";
 import SimpleDialog from './SimpleDialog';
@@ -24,6 +25,10 @@ function AddButton(props) {
       <SimpleDialog open={open} onClose={handleClose} title="Add Assignment" action="Add"/>
     </div>
   );
+}
+
+AddButton.propTypes = {
+  add: PropTypes.func
 }
 
 export default AddButton;

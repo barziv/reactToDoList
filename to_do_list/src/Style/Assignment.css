@@ -11,7 +11,8 @@
 
 .assignmentLabel {
     cursor: pointer;
-    padding: 0px 5em 0px 0px;
+    padding: 0 5em 0 0;
+    width: 20%;
 }
 
 .checkbox + .assignmentLabel:before {

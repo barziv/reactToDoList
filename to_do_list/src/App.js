@@ -39,7 +39,7 @@ function App() {
         change={changeAssignment}
         delete={deleteAssignment}
       />
-      <DownButtons data={assignments} add={changeAssignment} />
+      <DownButtons add={changeAssignment} />
     </div>
   );
 }
