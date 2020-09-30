@@ -1,0 +1,42 @@
+.box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 4vh 0vh 0vh 0vh;
+}
+
+.checkbox {
+    visibility: hidden;
+}
+
+.assignmentLabel {
+    cursor: pointer;
+    padding: 0px 5em 0px 0px;
+}
+
+.checkbox + .assignmentLabel:before {
+    border: 1px solid #000;
+    content: "\00a0";
+    display: inline-block;
+    font: 16px/1em sans-serif;
+    height: 16px;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    vertical-align: top;
+    width: 16px;
+}
+
+.checkbox:checked + .assignmentLabel:before {
+    background: #d54d7b;
+    color: #000;
+    content: "\2713";
+    text-align: center;
+}
+
+.checkbox:checked + .assignmentLabel:after {
+    font-weight: bold;
+}
+  
+.checkbox:focus + .assignmentLabel::before {
+      outline: rgb(59, 153, 252) auto 5px;
+}

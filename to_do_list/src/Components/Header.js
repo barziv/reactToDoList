@@ -1,23 +1,9 @@
 import React from 'react';
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyle = makeStyles({
-    header: {
-        color: '#d54d7b', 
-        fontFamily: "Great Vibes cursive",
-        fontSize: '15vh',
-        fontWeight: 'normal',
-        marginBottom: '0vh',
-        marginTop: '4vh',
-        textAlign: 'center',
-    }
-})
+import '../Style/Header.css';
 
 function Header(props) {
-    const classes = useStyle();
-
     return (
-        <h1 className={classes.header}>{props.children}</h1>
+        <h1 className='header'>{props.children}</h1>
     )
 }
 

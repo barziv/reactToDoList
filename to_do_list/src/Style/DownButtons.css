@@ -1,0 +1,6 @@
+.downButtons {
+    display: flex;
+    position: fixed;
+    bottom: 1vh;
+    right: 0vh;
+}

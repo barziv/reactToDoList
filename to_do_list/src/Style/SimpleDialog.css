@@ -1,0 +1,32 @@
+.dialog {
+    border-color: #504e4e;
+    position: fixed;
+    margin: 0;
+    top: 25%;
+    bottom: 50%;
+    left: 35%;
+    right: 35%;
+    height: 27%;
+    width: 30%;
+}
+
+.dialogBox {
+    display: grid;
+}
+
+.dialogTitle {
+    color: #d54d7b;
+    margin: 1% 0 4% 0;
+}
+
+.dialogButton {
+    background-color: #fff;
+    color: #3f51b5;
+    border: 0px;
+    padding: 1.5% 1.4% 1.5% 1.4%;
+    outline: none;
+}
+
+.dialogButton:hover {
+    background-color: #ececec;
+}

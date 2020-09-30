@@ -1,8 +1,8 @@
 import React from "react";
 import uuid from 'react-uuid';
-import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import SimpleDialog from './SimpleDialog';
+import '../Style/AddButton.css';
 
 function AddButton(props) {
   const [open, setOpen] = React.useState(false);
@@ -19,10 +19,8 @@ function AddButton(props) {
   };
 
   return (
-    <div>
-      <Fab color="primary" aria-label="add">
-        <AddIcon onClick={handleClickOpen} />
-      </Fab>
+    <div className='addButtonBox'>
+      <AddIcon className='addButton' onClick={handleClickOpen} />
       <SimpleDialog open={open} onClose={handleClose} title="Add Assignment" action="Add"/>
     </div>
   );
