@@ -1,0 +1,15 @@
+.add-button-box {
+    background-color: #3f51b5;
+    border-radius: 28vh;
+    height: 5vh;
+    width: 5vh;
+    padding: 0;
+}
+
+.add-button {
+    color: #fff;
+    border: none;
+    height: 2vh;
+    min-width: 2vh;
+    margin: 1.6vh 0 0 1.4vh;
+}
