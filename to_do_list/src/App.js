@@ -1,45 +1,48 @@
 import React, { useState, useEffect } from "react";
-import AssignmentsList from "./Components/AssignmentsList";
-import Header from "./Components/Header";
-import DownButtons from "./Containers/DownButtons";
-import config from './config';
-import storageManager from './Storage/StorageManager';
+import AssignmentsList from "./Containers/AssignmentsList/AssignmentsList";
+import Header from "./Components/Header/Header";
+import FloatyButtons from "./Containers/FloatyButtons/FloatyButtons";
+import {
+  saveToLocalStorage,
+  loadFromLocalStorage
+} from "./Storage/LocalStorageManager";
+import config from "./config";
 
 function App() {
   const [assignments, setAssignments] = useState({});
 
-  const changeAssignment = (id, isDone, label) => {
-    setAssignments(curr => {
-      curr[id] = {
-        'done': isDone,
-        'assignment': label
-      }
-      storageManager.save(config.STORAGE_KEY, curr);
-      return {...curr};
+  const changeAssignment = (id, status, description) => {
+    setAssignments(currentAssignments => {
+      currentAssignments[id] = {
+        status: status,
+        description: description
+      };
+      saveToLocalStorage(config.STORAGE_KEY, currentAssignments);
+      return { ...currentAssignments };
     });
   };
 
   const deleteAssignment = id => {
-    setAssignments(curr => {
-      delete curr[id];
-      storageManager.save(config.STORAGE_KEY, curr);
-      return {...curr};
+    setAssignments(currentAssignments => {
+      delete currentAssignments[id];
+      saveToLocalStorage(config.STORAGE_KEY, currentAssignments);
+      return { ...currentAssignments };
     });
   };
 
   useEffect(() => {
-    setAssignments(storageManager.load(config.STORAGE_KEY) ?? {});
+    setAssignments(loadFromLocalStorage(config.STORAGE_KEY));
   }, []);
 
   return (
     <div className="App">
-      <Header>To Do List</Header>
+      <Header text="To Do List" />
       <AssignmentsList
-        data={assignments}
-        change={changeAssignment}
-        delete={deleteAssignment}
+        assignmentObject={assignments}
+        onAssignmentChanged={changeAssignment}
+        onAssignmentDeleted={deleteAssignment}
       />
-      <DownButtons add={changeAssignment} />
+      <FloatyButtons onAddingAssignment={changeAssignment} />
     </div>
   );
 }
